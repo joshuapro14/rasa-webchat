@@ -159,3 +159,8 @@ export function pullSession() {
   };
 }
 
+export function messageSize() {
+  return {
+    type: actions.MESSAGE_SIZE
+  };
+}

@@ -96,3 +96,7 @@ export function dropMessages() {
 export function pullSession() {
   store.dispatch(actions.pullSession());
 }
+
+export function messageSize(){
+  store.dispatch(actions.messageSize());
+}

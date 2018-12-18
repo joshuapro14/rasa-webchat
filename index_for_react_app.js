@@ -15,7 +15,8 @@ import {
   showChat,
   hideChat,
   toggleInputDisabled,
-  dropMessages
+  dropMessages,
+  messageSize
 } from './src/store/actions/dispatcher';
 
 export {
@@ -35,5 +36,6 @@ export {
   showChat,
   hideChat,
   toggleInputDisabled,
-  dropMessages
+  dropMessages,
+  messageSize
 };

@@ -52,6 +52,9 @@ export default function (storage) {
       case actionTypes.DROP_MESSAGES: {
         return storeMessage(initialState)
       }
+      case actionTypes.MESSAGE_SIZE: {
+        return state.size
+      }
       // Pull conversation from storage, parsing as immutable List
       case actionTypes.PULL_SESSION: {
         const localSession = getLocalSession(storage, SESSION_NAME);
@@ -66,4 +69,3 @@ export default function (storage) {
     }
   }
 }
-
