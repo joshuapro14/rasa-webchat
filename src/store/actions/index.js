@@ -164,3 +164,9 @@ export function messageSize() {
     type: actions.MESSAGE_SIZE
   };
 }
+
+export function getMessages() {
+  return {
+    type: actions.MESSAGES
+  };
+}

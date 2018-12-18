@@ -23,14 +23,20 @@ function initStore(hintText, connectingText, socket, storage) {
       case actionTypes.GET_VISIBLE_STATE: {
         return store.getState().behavior.get("isChatVisible");
       }
+      case actionTypes.MESSAGE_SIZE: {
+        return store.getState().messages.size;
+      }
+      case actionTypes.MESSAGES: {
+        return store.getState().messages;
+      }
     }
 
     // console.log('Middleware triggered:', action);
     next(action);
   };
-  const reducer = combineReducers({ 
-    behavior: behavior(hintText, connectingText, storage), 
-    messages: messages(storage) 
+  const reducer = combineReducers({
+    behavior: behavior(hintText, connectingText, storage),
+    messages: messages(storage)
   });
 
   /* eslint-disable no-underscore-dangle */

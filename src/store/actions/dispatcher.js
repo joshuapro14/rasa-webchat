@@ -100,3 +100,7 @@ export function pullSession() {
 export function messageSize(){
   store.dispatch(actions.messageSize());
 }
+
+export function getMessages(){
+  store.dispatch(actions.getMessages());
+}
