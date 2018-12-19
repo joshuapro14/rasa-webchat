@@ -9,7 +9,7 @@ import * as actionTypes from './actions/actionTypes';
 
 let store = "call initStore first";
 
-function initStore(hintText, connectingText, socket, storage) {
+function initStore(hintText, connectingText, socket, storage, observer) {
 
   const customMiddleWare = (store) => next => (action) => {
     const session_id = (getLocalSession(storage, SESSION_NAME)? getLocalSession(storage, SESSION_NAME).session_id: null);
@@ -24,9 +24,19 @@ function initStore(hintText, connectingText, socket, storage) {
         return store.getState().behavior.get("isChatVisible");
       }
       case actionTypes.MESSAGE_SIZE: {
-        return store.getState().messages.size;
+        console.log("Messages Size called !!");
+        console.log("store.getState() "+store.getState());
+        console.log("store...messages "+store.getState().messages);
+        console.log("store..msg.size "+store.getState().messages.size);
+        var sz = store.getState().messages.size
+        console.log("type of msgSize : "+(typeof sz))
+        return sz;
       }
       case actionTypes.MESSAGES: {
+        console.log("get Messages called !!");
+        console.log("store.getState() "+store.getState());
+        console.log("store...messages "+store.getState().messages);
+        console.log("store..msg.size "+store.getState().messages.size);
         return store.getState().messages;
       }
     }
@@ -36,7 +46,7 @@ function initStore(hintText, connectingText, socket, storage) {
   };
   const reducer = combineReducers({
     behavior: behavior(hintText, connectingText, storage),
-    messages: messages(storage)
+    messages: messages(storage,observer)
   });
 
   /* eslint-disable no-underscore-dangle */

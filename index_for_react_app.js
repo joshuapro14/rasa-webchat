@@ -20,6 +20,10 @@ import {
   getMessages
 } from './src/store/actions/dispatcher';
 
+import {
+  ADD_BOT_MESSAGE
+} from './src/store/actions/actionTypes.js'
+
 export {
   ConnectedWidget as Widget,
   addUserMessage,
@@ -39,5 +43,6 @@ export {
   toggleInputDisabled,
   dropMessages,
   messageSize,
-  getMessages
+  getMessages,
+  ADD_BOT_MESSAGE
 };

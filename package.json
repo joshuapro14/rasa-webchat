@@ -1,6 +1,6 @@
 {
   "name": "rasa-webchat-josh",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "Chat web widget for React apps and Rasa Core chatbots; created from rasa webchat",
   "main": "lib/index.js",
   "repository": "git@https://github.com/joshuapro14/rasa-webchat",
@@ -30,6 +30,7 @@
     "react-immutable-proptypes": "^2.1.0",
     "react-markdown": "^4.0.3",
     "react-redux": "^5.0.6",
+    "react-event-observer": "^0.5.11",
     "redux": "^3.7.2",
     "socket.io": "^2.1.1",
     "uniqueid": "^1.0.0"

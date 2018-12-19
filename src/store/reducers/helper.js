@@ -3,6 +3,11 @@ import { MESSAGES_TYPES, MESSAGE_SENDER, SESSION_NAME } from 'constants';
 
 import { Video, Image, Message, Snippet, QuickReply } from 'messagesComponents';
 
+export function publishEvent(observer,event,data){
+  if(observer){
+    observer.publish(event,data);
+  }
+}
 
 export function createNewMessage(text, sender) {
   return Map({

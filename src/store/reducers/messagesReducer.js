@@ -9,12 +9,13 @@ import {
     createImageSnippet,
     createComponentMessage,
     storeMessageTo,
-    getLocalSession
+    getLocalSession,
+    publishEvent
 } from './helper';
 
 import * as actionTypes from '../actions/actionTypes';
 
-export default function (storage) {
+export default function (storage,observer) {
 
   const initialState = List([]);
 
@@ -26,19 +27,29 @@ export default function (storage) {
         return storeMessage(state.push(createNewMessage(action.text, MESSAGE_SENDER.CLIENT)))
       }
       case actionTypes.ADD_NEW_RESPONSE_MESSAGE: {
-        return storeMessage(state.push(createNewMessage(action.text, MESSAGE_SENDER.RESPONSE)));
+        const newState = storeMessage(state.push(createNewMessage(action.text, MESSAGE_SENDER.RESPONSE)));
+        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        return newState;
       }
       case actionTypes.ADD_NEW_LINK_SNIPPET: {
-        return storeMessage(state.push(createLinkSnippet(action.link, MESSAGE_SENDER.RESPONSE)));
+        const newState =storeMessage(state.push(createLinkSnippet(action.link, MESSAGE_SENDER.RESPONSE)));
+        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        return newState;
       }
       case actionTypes.ADD_NEW_VIDEO_VIDREPLY: {
-        return storeMessage(state.push(createVideoSnippet(action.video, MESSAGE_SENDER.RESPONSE)));
+        const newState = storeMessage(state.push(createVideoSnippet(action.video, MESSAGE_SENDER.RESPONSE)));
+        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        return newState;
       }
       case actionTypes.ADD_NEW_IMAGE_IMGREPLY: {
-        return storeMessage(state.push(createImageSnippet(action.image, MESSAGE_SENDER.RESPONSE)));
+        const newState = storeMessage(state.push(createImageSnippet(action.image, MESSAGE_SENDER.RESPONSE)));
+        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        return newState;
       }
       case actionTypes.ADD_QUICK_REPLY: {
-        return storeMessage(state.push(createQuickReply(action.quickReply, MESSAGE_SENDER.RESPONSE)));
+        const newState = storeMessage(state.push(createQuickReply(action.quickReply, MESSAGE_SENDER.RESPONSE)));
+        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        return newState;
       }
       case actionTypes.ADD_COMPONENT_MESSAGE: {
         return storeMessage(state.push(createComponentMessage(action.component, action.props, action.showAvatar)));

@@ -19,6 +19,7 @@ import {
   pullSession
 } from 'actions';
 
+
 import { isSnippet, isVideo, isImage, isQR, isText } from './msgProcessor';
 import WidgetLayout from './layout';
 import { storeLocalSession, getLocalSession } from '../../store/reducers/helper';
@@ -62,12 +63,12 @@ class Widget extends Component {
       Check if the session_id is consistent with the server
       If the local_id is null or different from the remote_id,
       start a new session.
-      */    
+      */
       if (local_id !== remote_id) {
-        
+
         // storage.clear();
         // Store the received session_id to storage
-        
+
         storeLocalSession(storage, SESSION_NAME, remote_id);
         this.props.dispatch(pullSession());
         this.trySendInitPayload()
@@ -103,25 +104,25 @@ class Widget extends Component {
   }
 
   // TODO: Need to erase redux store on load if localStorage
-  // is erased. Then behavior on reload can be consistent with 
+  // is erased. Then behavior on reload can be consistent with
   // behavior on first load
 
   trySendInitPayload = () => {
-    const { 
-      initPayload, 
-      customData, 
-      socket, 
-      initialized, 
-      isChatOpen, 
+    const {
+      initPayload,
+      customData,
+      socket,
+      initialized,
+      isChatOpen,
       isChatVisible,
-      embedded, 
-      connected 
+      embedded,
+      connected
     } = this.props;
 
     // Send initial payload when chat is opened or widget is shown
     if (!initialized && connected && (((isChatOpen && isChatVisible) || embedded))) {
       // Only send initial payload if the widget is connected to the server but not yet initialized
-      
+
       const session_id = this.getSessionId();
 
       // check that session_id is confirmed

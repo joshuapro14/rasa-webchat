@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Widget, toggleChat, openChat, closeChat, showChat, hideChat, isOpen, isVisible, messageSize, getMessages } from './index_for_react_app';
+import { Widget, toggleChat, openChat, closeChat, showChat, hideChat, isOpen, isVisible, messageSize, getMessages, ADD_BOT_MESSAGE } from './index_for_react_app';
 
 const plugin = {
   init: (args) => {
@@ -24,6 +24,7 @@ const plugin = {
         embedded={args.embedded}
         openLauncherImage={args.openLauncherImage}
         closeImage={args.closeImage}
+        observer={args.observer}
       />, document.querySelector(args.selector)
     );
   }
@@ -40,5 +41,6 @@ export {
   isOpen,
   isVisible,
   messageSize,
-  getMessages
+  getMessages,
+  ADD_BOT_MESSAGE
 };

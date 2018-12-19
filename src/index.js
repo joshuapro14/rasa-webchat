@@ -13,7 +13,8 @@ const ConnectedWidget = (props) => {
     props.inputTextFieldHint,
     props.connectingText,
     sock,
-    storage
+    storage,
+    props.observer
     );
   return (<Provider store={store}>
     <Widget
@@ -32,7 +33,7 @@ const ConnectedWidget = (props) => {
       params={props.params}
       storage={storage}
       openLauncherImage={props.openLauncherImage}
-      closeImage={props.closeImage}
+      closeImage={props.closeImage}      
     />
   </Provider>);
 };

@@ -1,6 +1,7 @@
 # webchat
 
 A simple webchat widget to connect with a chatbot. Forked from [react-chat-widget](https://github.com/Wolox/react-chat-widget)
+Further forked from [rasa-webchat](https://github.com/mrbot-ai/rasa-webchat)
 ## Features
 
 - Text Messages
@@ -10,6 +11,7 @@ A simple webchat widget to connect with a chatbot. Forked from [react-chat-widge
 - Markdown support
 - Easy to import in a script tag or as a React Component
 - Persistent sessions
+- Event Observer
 
 ![demonstration](./assets/chat-demonstration.gif)
 
@@ -59,39 +61,62 @@ is also available and is updated continuously with the latest version.
 
 Install the package from GitHub by running:
 ```bash
-npm install mrbot-ai/rasa-webchat
+npm install --save rasa-webchat-josh
+npm install --save react-event-observer
 ```
 
 Then once it is installed it can be implemented as follows.
 
 ```javascript
-import { Widget } from 'rasa-webchat';
+import React, { Component } from 'react';
+import ReactObserver from 'react-event-observer';
+import { Widget, ADD_BOT_MESSAGE } from 'rasa-webchat-josh';
 
-function CustomWidget = () => {
-  return (
-    <Widget
-      interval={2000}
-      initPayload={"/get_started"}
-      socketUrl={"http://localhost:5500"}
-      socketPath={"/socket.io/"}
-      title={"Title"}
-      inputTextFieldHint={"Type a message..."}
-      connectingText={"Waiting for server..."}
-      embedded={true}
-      openLauncherImage="myCustomOpenImage.png"
-      closeLauncherImage="myCustomCloseImage.png"
-      params={{
-        images: {
-          dims: {
-            width: 300,
-            height: 200
-          }
-        },
-        storage: "local"
-      }}
-    />
-  )
+class CustomWidget extends Component {
+
+  constructor(props){
+    super(props);
+    this.observer = ReactObserver();
+    this.initializeListeners();
+  }
+
+  //Event listener
+  initializeListeners(){
+    this.msgAddListener = this.observer.subscribe(ADD_BOT_MESSAGE,(data) =>{
+      console.log("Message added **; size "+data);
+    })
+  }
+
+  render(){
+    return(
+      <div>
+      <Widget
+        interval={2000}
+        initPayload={"/get_started"}
+        socketUrl={"http://localhost:5500"}
+        socketPath={"/socket.io/"}
+        title={"Title"}
+        inputTextFieldHint={"Type a message..."}
+        connectingText={"Waiting for server..."}
+        embedded={true}
+        openLauncherImage="myCustomOpenImage.png"
+        closeLauncherImage="myCustomCloseImage.png"
+        observer={this.observer}
+        params={{
+          images: {
+            dims: {
+              width: 300,
+              height: 200
+            }
+          },
+          storage: "local"
+        }}
+      />
+      </div>
+    )
+  }
 }
+
 ```
 
 - Make sure to have the prop `embedded`

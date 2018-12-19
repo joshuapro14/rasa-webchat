@@ -24,3 +24,4 @@ export const DROP_MESSAGES = 'DROP_MESSAGES';
 export const PULL_SESSION = 'PULL_SESSION';
 export const MESSAGE_SIZE = 'MESSAGE_SIZE';
 export const MESSAGES = 'MESSAGES';
+export const ADD_BOT_MESSAGE = 'ADD_BOT_MESSAGE';
