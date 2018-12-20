@@ -28,27 +28,27 @@ export default function (storage,observer) {
       }
       case actionTypes.ADD_NEW_RESPONSE_MESSAGE: {
         const newState = storeMessage(state.push(createNewMessage(action.text, MESSAGE_SENDER.RESPONSE)));
-        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        publishEvent(observer,actionTypes.BOT_MESSAGE_RECEIVED,newState.size);
         return newState;
       }
       case actionTypes.ADD_NEW_LINK_SNIPPET: {
         const newState =storeMessage(state.push(createLinkSnippet(action.link, MESSAGE_SENDER.RESPONSE)));
-        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        publishEvent(observer,actionTypes.BOT_MESSAGE_RECEIVED,newState.size);
         return newState;
       }
       case actionTypes.ADD_NEW_VIDEO_VIDREPLY: {
         const newState = storeMessage(state.push(createVideoSnippet(action.video, MESSAGE_SENDER.RESPONSE)));
-        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        publishEvent(observer,actionTypes.BOT_MESSAGE_RECEIVED,newState.size);
         return newState;
       }
       case actionTypes.ADD_NEW_IMAGE_IMGREPLY: {
         const newState = storeMessage(state.push(createImageSnippet(action.image, MESSAGE_SENDER.RESPONSE)));
-        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        publishEvent(observer,actionTypes.BOT_MESSAGE_RECEIVED,newState.size);
         return newState;
       }
       case actionTypes.ADD_QUICK_REPLY: {
         const newState = storeMessage(state.push(createQuickReply(action.quickReply, MESSAGE_SENDER.RESPONSE)));
-        publishEvent(observer,actionTypes.ADD_BOT_MESSAGE,newState.size);
+        publishEvent(observer,actionTypes.BOT_MESSAGE_RECEIVED,newState.size);
         return newState;
       }
       case actionTypes.ADD_COMPONENT_MESSAGE: {

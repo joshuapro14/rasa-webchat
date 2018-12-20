@@ -70,7 +70,12 @@ Then once it is installed it can be implemented as follows.
 ```javascript
 import React, { Component } from 'react';
 import ReactObserver from 'react-event-observer';
-import { Widget, ADD_BOT_MESSAGE } from 'rasa-webchat-josh';
+import {
+  Widget,
+  BOT_MESSAGE_RECEIVED,
+  CHAT_OPENED,
+  CHAT_CLOSED
+} from 'rasa-webchat-josh';
 
 class CustomWidget extends Component {
 
@@ -82,9 +87,15 @@ class CustomWidget extends Component {
 
   //Event listener
   initializeListeners(){
-    this.msgAddListener = this.observer.subscribe(ADD_BOT_MESSAGE,(data) =>{
+    this.msgAddListener = this.observer.subscribe(BOT_MESSAGE_RECEIVED,(data) =>{
       console.log("Message added **; size "+data);
-    })
+    });
+    this.chatOpened = this.observer.subscribe(CHAT_OPENED,(data) =>{
+      console.log("Chat opened; isChatOpen "+data);
+    });
+    this.chatClosed = this.observer.subscribe(CHAT_CLOSED,(data) =>{
+      console.log("Chat closed; isChatOpen "+data);
+    });    
   }
 
   render(){

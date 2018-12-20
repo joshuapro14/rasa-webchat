@@ -21,7 +21,9 @@ import {
 } from './src/store/actions/dispatcher';
 
 import {
-  ADD_BOT_MESSAGE
+  BOT_MESSAGE_RECEIVED,
+  CHAT_OPENED,
+  CHAT_CLOSED
 } from './src/store/actions/actionTypes.js'
 
 export {
@@ -44,5 +46,7 @@ export {
   dropMessages,
   messageSize,
   getMessages,
-  ADD_BOT_MESSAGE
+  ADD_BOT_MESSAGE,
+  CHAT_OPENED,
+  CHAT_CLOSED
 };

@@ -1,17 +1,17 @@
 import { Map } from 'immutable';
 import * as actionTypes from '../actions/actionTypes';
 import { SESSION_NAME } from 'constants';
-import { getLocalSession, storeParamsTo } from './helper';
+import { getLocalSession, storeParamsTo, publishEvent } from './helper';
 
 export default function (inputFieldTextHint, connectingText, storage) {
-  const initialState = Map({ 
-    connected: false, 
-    initialized: false, 
-    isChatVisible: true, 
-    isChatOpen: false, 
-    disabledInput: true, 
-    inputFieldTextHint, 
-    connectingText 
+  const initialState = Map({
+    connected: false,
+    initialized: false,
+    isChatVisible: true,
+    isChatOpen: false,
+    disabledInput: true,
+    inputFieldTextHint,
+    connectingText
   });
 
   return function reducer(state = initialState, action) {
@@ -25,13 +25,23 @@ export default function (inputFieldTextHint, connectingText, storage) {
         return storeParams(state.update('isChatVisible', isChatVisible => false));
       }
       case actionTypes.TOGGLE_CHAT: {
-        return storeParams(state.update('isChatOpen', isChatOpen => !isChatOpen));
+        const newState = storeParams(state.update('isChatOpen', isChatOpen => !isChatOpen));
+        if(newState.get("isChatOpen")){
+          publishEvent(observer,actionTypes.CHAT_OPENED,newState.get("isChatOpen"));
+        }else{
+          publishEvent(observer,actionTypes.CHAT_CLOSED,newState.get("isChatOpen"));
+        }
+        return newState;
       }
       case actionTypes.OPEN_CHAT: {
-        return storeParams(state.update('isChatOpen', isChatOpen => true));
+        const newState = storeParams(state.update('isChatOpen', isChatOpen => true));
+        publishEvent(observer,actionTypes.CHAT_OPENED,newState.get("isChatOpen"));
+        return newState;
       }
       case actionTypes.CLOSE_CHAT: {
-        return storeParams(state.update('isChatOpen', isChatOpen => false));
+        const newState = storeParams(state.update('isChatOpen', isChatOpen => false));
+        publishEvent(observer,actionTypes.CHAT_CLOSED,newState.get("isChatOpen"));
+        return newState;
       }
       case actionTypes.TOGGLE_INPUT_DISABLED: {
         return storeParams(state.update('disabledInput', disabledInput => !disabledInput));

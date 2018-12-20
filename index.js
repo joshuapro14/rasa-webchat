@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Widget, toggleChat, openChat, closeChat, showChat, hideChat, isOpen, isVisible, messageSize, getMessages, ADD_BOT_MESSAGE } from './index_for_react_app';
+import {
+  Widget, toggleChat, openChat, closeChat, showChat,
+  hideChat, isOpen, isVisible, messageSize, getMessages,
+  BOT_MESSAGE_RECEIVED, CHAT_OPENED, CHAT_CLOSED
+} from './index_for_react_app';
 
 const plugin = {
   init: (args) => {
@@ -42,5 +46,7 @@ export {
   isVisible,
   messageSize,
   getMessages,
-  ADD_BOT_MESSAGE
+  BOT_MESSAGE_RECEIVED,
+  CHAT_OPENED,
+  CHAT_CLOSED
 };
