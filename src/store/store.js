@@ -45,7 +45,7 @@ function initStore(hintText, connectingText, socket, storage, observer) {
     next(action);
   };
   const reducer = combineReducers({
-    behavior: behavior(hintText, connectingText, storage),
+    behavior: behavior(hintText, connectingText, storage,observer)),
     messages: messages(storage,observer)
   });
 

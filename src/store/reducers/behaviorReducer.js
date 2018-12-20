@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 import { SESSION_NAME } from 'constants';
 import { getLocalSession, storeParamsTo, publishEvent } from './helper';
 
-export default function (inputFieldTextHint, connectingText, storage) {
+export default function (inputFieldTextHint, connectingText, storage, observer)) {
   const initialState = Map({
     connected: false,
     initialized: false,

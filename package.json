@@ -1,6 +1,6 @@
 {
   "name": "rasa-webchat-josh",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Chat web widget for React apps and Rasa Core chatbots; created from rasa webchat",
   "main": "lib/index.js",
   "repository": "git@https://github.com/joshuapro14/rasa-webchat",
