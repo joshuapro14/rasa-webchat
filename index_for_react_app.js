@@ -46,7 +46,7 @@ export {
   dropMessages,
   messageSize,
   getMessages,
-  ADD_BOT_MESSAGE,
+  BOT_MESSAGE_RECEIVED,
   CHAT_OPENED,
   CHAT_CLOSED
 };
